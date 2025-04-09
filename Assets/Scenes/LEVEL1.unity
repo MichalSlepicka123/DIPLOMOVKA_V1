@@ -13014,12 +13014,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a6a09dcbd7edd4eb9544cb465488ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionPanel: {fileID: 0}
-  questionText: {fileID: 0}
+  questionPanel: {fileID: 1542112267}
+  questionText: {fileID: 1727518465}
   answerButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1260154031}
+  - {fileID: 492052118}
+  - {fileID: 376831103}
 --- !u!1001 &1237283103
 PrefabInstance:
   m_ObjectHideFlags: 0
