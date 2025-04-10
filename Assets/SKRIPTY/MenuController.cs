@@ -17,22 +17,31 @@ public class MenuController : MonoBehaviour
 
     public void SetupLevelButtons()
     {
-        // Level 1 je vždy aktívny
-        level1Button.interactable = true;
+        // LEVEL 1 – sprístupni, ak už bol aspoò raz spustený
+        if (PlayerPrefs.GetInt("Level1Started", 0) == 1)
+        {
+            level1Button.interactable = true;
+            SetAlpha(level1Button, 1f);
+        }
+        else
+        {
+            level1Button.interactable = false;
+            SetAlpha(level1Button, 0.4f);
+        }
 
-        // Level 2 sa odomkne až po splnení Level1
+        // LEVEL 2 – len po úspešnom dokonèení Level 1
         if (PlayerPrefs.GetInt("Level1Completed", 0) == 1)
         {
             level2Button.interactable = true;
-            SetAlpha(level2Button, 1f); // plne vidite¾ný
+            SetAlpha(level2Button, 1f);
         }
         else
         {
             level2Button.interactable = false;
-            SetAlpha(level2Button, 0.4f); // priesvitný
+            SetAlpha(level2Button, 0.4f);
         }
 
-        // Rovnaká logika pre Level 3
+        // LEVEL 3 – len po úspešnom dokonèení Level 2
         if (PlayerPrefs.GetInt("Level2Completed", 0) == 1)
         {
             level3Button.interactable = true;
@@ -48,8 +57,24 @@ public class MenuController : MonoBehaviour
     void SetAlpha(Button btn, float alpha)
     {
         ColorBlock cb = btn.colors;
-        cb.normalColor = new Color(cb.normalColor.r, cb.normalColor.g, cb.normalColor.b, alpha);
+        Color baseColor = cb.normalColor;
+        baseColor.a = alpha;
+
+        cb.normalColor = baseColor;
+        cb.highlightedColor = baseColor;
+        cb.pressedColor = baseColor;
+        cb.selectedColor = baseColor;
+        cb.disabledColor = new Color(baseColor.r, baseColor.g, baseColor.b, 0.2f);
+
         btn.colors = cb;
+    }
+
+    // Tlaèidlo ŠTART – spustí hneï LEVEL1 a zároveò uloží stav
+    public void OnStartButtonPressed()
+    {
+        PlayerPrefs.SetInt("Level1Started", 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("LEVEL1");
     }
 
     public void StartLevel1()
