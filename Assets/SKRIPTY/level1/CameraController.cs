@@ -12,17 +12,25 @@ public class CameraController : MonoBehaviour
     private Vector3 targetPos;
 
     Coroutine rotateCoroutine;
+    private bool skipLevel1 = false; //  nová premenná
 
     IEnumerator Start()
     {
-        yield return null; // Poèkaj na SignShuffler
+        //  Ak ideme rovno do Level2, preskoè znaèky
+        if (PlayerPrefs.GetInt("GoToLevel2", 0) == 1)
+        {
+            skipLevel1 = true;
+            yield break;
+        }
 
-        // Získaj náhodne zoradený zoznam znaèiek
+        yield return null;
+
         signList = new List<Transform>(SignShuffler.Instance.randomizedSigns);
         Debug.Log("Naèítaných znaèiek: " + signList.Count);
 
         MoveToNextSign();
     }
+
     IEnumerator RotateTowards(Vector3 targetDirection)
     {
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
@@ -35,18 +43,21 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = targetRotation;
     }
+
     IEnumerator MoveCameraToTarget()
     {
         Vector3 directionToTarget = (targetPos - transform.position).normalized;
+
         if (rotateCoroutine == null)
         {
             rotateCoroutine = StartCoroutine(RotateTowards(directionToTarget));
         }
         else
-        { 
+        {
             StopCoroutine(rotateCoroutine);
             rotateCoroutine = StartCoroutine(RotateTowards(directionToTarget));
         }
+
         while (Vector3.Distance(transform.position, targetPos) > 0.05f)
         {
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
@@ -54,6 +65,7 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = targetPos;
+
         Vector3 directionToSign = ((currentTarget.position + Vector3.up) - transform.position).normalized;
         if (rotateCoroutine == null)
         {
@@ -64,13 +76,15 @@ public class CameraController : MonoBehaviour
             StopCoroutine(rotateCoroutine);
             rotateCoroutine = StartCoroutine(RotateTowards(directionToSign));
         }
-            // Show the question
+
+        // Zobraz otázku
         SignPoint sign = currentTarget.GetComponent<SignPoint>();
         if (sign != null)
         {
             UIManager.Instance.ShowQuestion(sign.questionText, sign.allOptions, sign.correctAnswer);
         }
     }
+
     public void OnAnswerGiven(bool isCorrect)
     {
         if (isCorrect)
@@ -83,25 +97,25 @@ public class CameraController : MonoBehaviour
 
     void MoveToNextSign()
     {
+        if (skipLevel1) return; //  ak sme v interiéri, neprepínaj znaèky
+
         if (signList.Count == 0)
         {
             Debug.Log("Hotovo! Test dokonèený.");
             UIManager.Instance.ShowFinalScore();
             return;
         }
+
         currentTarget = null;
 
-        // Vyber náhodnú znaèku zo zoznamu
         int randomIndex = Random.Range(0, signList.Count);
         currentTarget = signList[randomIndex];
         signList.RemoveAt(randomIndex);
 
-        // Výpoèet cie¾ovej pozície kamery
+        float verticalOffset = 1f;
+        float zOffset = 1.0f;
+
         Vector3 pos = currentTarget.position;
-
-        float verticalOffset = 1f;  //  Jemne nad zemou (takmer vo výške znaèky)
-        float zOffset = 1.0f;         // Pred znaèkou (pozícia kamery)
-
         targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z + zOffset);
 
         StartCoroutine(MoveCameraToTarget());

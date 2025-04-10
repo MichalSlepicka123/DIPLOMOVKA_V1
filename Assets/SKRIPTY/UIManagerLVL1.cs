@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +25,23 @@ public class UIManager : MonoBehaviour
         Instance = this;
         questionPanel.SetActive(false);
         resultPanel.SetActive(false);
+    }
+
+    void Start()
+    {
+        if (PlayerPrefs.GetInt("GoToLevel2", 0) == 1)
+        {
+            if (PlayerPrefs.GetInt("Level1Completed", 0) == 1)
+            {
+                PlayerPrefs.SetInt("GoToLevel2", 0);
+                StartLevel2();
+            }
+            else
+            {
+                PlayerPrefs.SetInt("GoToLevel2", 0);
+                SceneManager.LoadScene("MENU");
+            }
+        }
     }
 
     public void ShowQuestion(string question, string[] options, string correct)
@@ -60,6 +78,8 @@ public class UIManager : MonoBehaviour
         if (score >= 15)
         {
             continueButton.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("Level1Completed", 1);
+            PlayerPrefs.Save();
         }
         else
         {
@@ -71,14 +91,9 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Sp˙öùam Level 2");
 
-        //  Uloûenie progresu - dokonËen˝ Level1
-        PlayerPrefs.SetInt("Level1Completed", 1);
-        PlayerPrefs.Save();
-
         resultPanel.SetActive(false);
         questionPanel.SetActive(false);
 
-        // Zmenöi panel pre Level 2
         RectTransform rt = questionPanel.GetComponent<RectTransform>();
         if (rt != null)
         {
@@ -88,12 +103,11 @@ public class UIManager : MonoBehaviour
             rt.offsetMax = Vector2.zero;
         }
 
-        // Spusti interiÈrov˝ level (Level 2)
         FindObjectOfType<Level2Manager>().StartLevel();
     }
 
     public void ReloadLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("LEVEL1");
     }
 }
