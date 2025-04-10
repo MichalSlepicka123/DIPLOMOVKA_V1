@@ -59,11 +59,11 @@ public class UIManager : MonoBehaviour
 
         if (score >= 15)
         {
-            continueButton.gameObject.SetActive(true);  // Aktivuj tlaèidlo "Pokraèova"
+            continueButton.gameObject.SetActive(true);
         }
         else
         {
-            continueButton.gameObject.SetActive(false); // Skry ho ak skóre nestaèí
+            continueButton.gameObject.SetActive(false);
         }
     }
 
@@ -71,10 +71,20 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Spúšam Level 2");
 
-        // Skry vısledkovı panel
         resultPanel.SetActive(false);
+        questionPanel.SetActive(false);
 
-        // Spusti Level 2 a teraz
+        // Zmenši panel pre Level 2 (napr. menší box dole)
+        RectTransform rt = questionPanel.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.anchorMin = new Vector2(0.3f, 0.05f); // pozícia panelu
+            rt.anchorMax = new Vector2(0.7f, 0.25f); // šírka a vıška
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+        }
+
+        // Spusti interiérovı level
         FindObjectOfType<Level2Manager>().StartLevel();
     }
 
