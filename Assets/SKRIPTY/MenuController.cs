@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public GameObject infoPanel;
+    public GameObject infoPanel;  // priradíš v inšpektore
 
     public void StartGame()
     {
