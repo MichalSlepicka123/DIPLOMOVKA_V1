@@ -3707,7 +3707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   znackyParent: {fileID: 1187101731}
-  startPosition: {x: -15, y: -0.45, z: 0}
+  startPosition: {x: -16, y: -0.45, z: 0}
   spacing: 1
   randomizedSigns: []
 --- !u!4 &220644453
@@ -17585,7 +17585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  rotateSpeed: 5
+  rotateSpeed: 6
 --- !u!1 &970741206
 GameObject:
   m_ObjectHideFlags: 0
