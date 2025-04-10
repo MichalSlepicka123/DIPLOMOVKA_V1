@@ -5,11 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    public float rotateSpeed = 5f;
 
     private List<Transform> signList;
     private Transform currentTarget;
     private Vector3 targetPos;
-    private bool isMoving = false;
+
+    Coroutine rotateCoroutine;
 
     IEnumerator Start()
     {
@@ -21,34 +23,54 @@ public class CameraController : MonoBehaviour
 
         MoveToNextSign();
     }
-
-    void Update()
+    IEnumerator RotateTowards(Vector3 targetDirection)
     {
-        if (isMoving && currentTarget != null)
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 0.05f)
         {
-            // Plynulý presun kamery
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.rotation = targetRotation;
+    }
+    IEnumerator MoveCameraToTarget()
+    {
+        Vector3 directionToTarget = (targetPos - transform.position).normalized;
+        if (rotateCoroutine == null)
+        {
+            rotateCoroutine = StartCoroutine(RotateTowards(directionToTarget));
+        }
+        else
+        { 
+            StopCoroutine(rotateCoroutine);
+            rotateCoroutine = StartCoroutine(RotateTowards(directionToTarget));
+        }
+        while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+        {
             transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
 
-            
-            // ZMENENÉ – kamera sa pozerá o nieèo vyššie nad pivot znaèky
-            Vector3 lookPoint = currentTarget.position + new Vector3(0, 1f, 0);
-            transform.LookAt(lookPoint);
-            
-
-            // Ak sme dostatoène blízko, zobrazíme otázku
-            if (Vector3.Distance(transform.position, targetPos) < 0.1f)
-            {
-                isMoving = false;
-
-                SignPoint sign = currentTarget.GetComponent<SignPoint>();
-                if (sign != null)
-                {
-                    UIManager.Instance.ShowQuestion(sign.questionText, sign.allOptions, sign.correctAnswer);
-                }
-            }
+        transform.position = targetPos;
+        Vector3 directionToSign = ((currentTarget.position + Vector3.up) - transform.position).normalized;
+        if (rotateCoroutine == null)
+        {
+            rotateCoroutine = StartCoroutine(RotateTowards(directionToSign));
+        }
+        else
+        {
+            StopCoroutine(rotateCoroutine);
+            rotateCoroutine = StartCoroutine(RotateTowards(directionToSign));
+        }
+            // Show the question
+        SignPoint sign = currentTarget.GetComponent<SignPoint>();
+        if (sign != null)
+        {
+            UIManager.Instance.ShowQuestion(sign.questionText, sign.allOptions, sign.correctAnswer);
         }
     }
-
     public void OnAnswerGiven(bool isCorrect)
     {
         if (isCorrect)
@@ -67,8 +89,7 @@ public class CameraController : MonoBehaviour
             UIManager.Instance.ShowFinalScore();
             return;
         }
-
-        isMoving = true;
+        currentTarget = null;
 
         // Vyber náhodnú znaèku zo zoznamu
         int randomIndex = Random.Range(0, signList.Count);
@@ -79,8 +100,10 @@ public class CameraController : MonoBehaviour
         Vector3 pos = currentTarget.position;
 
         float verticalOffset = 1f;  //  Jemne nad zemou (takmer vo výške znaèky)
-        float zOffset = 1.5f;         // Pred znaèkou (pozícia kamery)
+        float zOffset = 1.0f;         // Pred znaèkou (pozícia kamery)
 
         targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z + zOffset);
+
+        StartCoroutine(MoveCameraToTarget());
     }
 }
