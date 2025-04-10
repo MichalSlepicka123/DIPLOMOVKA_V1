@@ -3707,7 +3707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   znackyParent: {fileID: 1187101731}
-  startPosition: {x: -14, y: -0.45, z: 0}
+  startPosition: {x: -15, y: -0.45, z: 0}
   spacing: 1
   randomizedSigns: []
 --- !u!4 &220644453
@@ -17584,7 +17584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815ec23a0df1ef44680b0d4bf4bfa8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 4
+  rotateSpeed: 5
 --- !u!1 &970741206
 GameObject:
   m_ObjectHideFlags: 0
@@ -27630,7 +27631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7712658910458368441, guid: fa5a7eb1c03d6ba4da648e39b3f0dccd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.462869
+      value: -5.48
       objectReference: {fileID: 0}
     - target: {fileID: 7712658910458368441, guid: fa5a7eb1c03d6ba4da648e39b3f0dccd, type: 3}
       propertyPath: m_LocalPosition.y
