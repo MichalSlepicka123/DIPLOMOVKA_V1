@@ -71,20 +71,24 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Spúšam Level 2");
 
+        //  Uloenie progresu - dokonèenı Level1
+        PlayerPrefs.SetInt("Level1Completed", 1);
+        PlayerPrefs.Save();
+
         resultPanel.SetActive(false);
         questionPanel.SetActive(false);
 
-        // Zmenši panel pre Level 2 (napr. menší box dole)
+        // Zmenši panel pre Level 2
         RectTransform rt = questionPanel.GetComponent<RectTransform>();
         if (rt != null)
         {
-            rt.anchorMin = new Vector2(0.3f, 0.05f); // pozícia panelu
-            rt.anchorMax = new Vector2(0.7f, 0.25f); // šírka a vıška
+            rt.anchorMin = new Vector2(0.3f, 0.05f);
+            rt.anchorMax = new Vector2(0.7f, 0.25f);
             rt.offsetMin = Vector2.zero;
             rt.offsetMax = Vector2.zero;
         }
 
-        // Spusti interiérovı level
+        // Spusti interiérovı level (Level 2)
         FindObjectOfType<Level2Manager>().StartLevel();
     }
 
