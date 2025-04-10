@@ -20379,15 +20379,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9509486
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.30934903
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -36.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
