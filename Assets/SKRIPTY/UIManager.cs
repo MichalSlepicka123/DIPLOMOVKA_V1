@@ -12,12 +12,18 @@ public class UIManager : MonoBehaviour
     public TMP_Text questionText;
     public Button[] answerButtons;
 
+    public GameObject resultPanel;
+    public TMP_Text resultText;
+    public Button tryAgainButton;
+    public Button continueButton;
+
     private string correctAnswer;
 
     void Awake()
     {
         Instance = this;
         questionPanel.SetActive(false);
+        resultPanel.SetActive(false);
     }
 
     public void ShowQuestion(string question, string[] options, string correct)
@@ -47,8 +53,33 @@ public class UIManager : MonoBehaviour
 
     public void ShowFinalScore()
     {
-        Debug.Log("Uká skóre alebo prechod na ïalší level");
-        // Môeš tu zobrazi panel s vısledkom alebo prepnú scénu
+        int score = GameManager.Instance.score;
+        resultPanel.SetActive(true);
+        resultText.text = $"Získal si {score} z 20 bodov.";
+
+        if (score >= 15)
+        {
+            continueButton.gameObject.SetActive(true);  // Aktivuj tlaèidlo "Pokraèova"
+        }
+        else
+        {
+            continueButton.gameObject.SetActive(false); // Skry ho ak skóre nestaèí
+        }
+    }
+
+    public void StartLevel2()
+    {
+        Debug.Log("Spúšam Level 2");
+
+        // Skry vısledkovı panel
+        resultPanel.SetActive(false);
+
+        // Spusti Level 2 a teraz
+        FindObjectOfType<Level2Manager>().StartLevel();
+    }
+
+    public void ReloadLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
     }
 }
-
