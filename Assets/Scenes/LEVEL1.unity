@@ -28083,8 +28083,8 @@ MonoBehaviour:
   questionPanel: {fileID: 1542112267}
   questionText: {fileID: 1727518465}
   cameraTarget: {fileID: 139526053}
-  engineViewTarget: {fileID: 1023338304}
-  cameraMoveSpeed: 2
+  cameraTarget2: {fileID: 1023338304}
+  cameraMoveSpeed: 3
 --- !u!1 &1542112267
 GameObject:
   m_ObjectHideFlags: 0
@@ -28124,7 +28124,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -228.19}
-  m_SizeDelta: {x: 700.2, y: 174.8}
+  m_SizeDelta: {x: 763.51, y: 152.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542112269
 MonoBehaviour:
@@ -30691,10 +30691,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1542112268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 558.8, y: 147.2}
+  m_SizeDelta: {x: -205.20001, y: -4.800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727518465
 MonoBehaviour:

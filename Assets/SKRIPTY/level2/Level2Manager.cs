@@ -12,9 +12,10 @@ public class Level2Manager : MonoBehaviour
     public GameObject questionPanel;
     public TMP_Text questionText;
 
-    public Transform cameraTarget;       // cieæ pre interiÈr
-    public Transform engineViewTarget;   // cieæ pre motor
-    public float cameraMoveSpeed = 2f;
+    public Transform cameraTarget;   // pozÌcia pre interiÈr
+    public Transform cameraTarget2;  // pozÌcia pre motor
+
+    public float cameraMoveSpeed = 2f; // r˝chlosù kamery pri prechode
 
     void Start() { }
 
@@ -23,18 +24,14 @@ public class Level2Manager : MonoBehaviour
         Debug.Log("StartLevel() spustenÈ");
         currentIndex = 0;
 
-        //  HneÔ teleportuj kameru na interiÈr
+        // R˝chle nastavenie kamery do interiÈru
         if (cameraTarget != null)
         {
             Camera.main.transform.position = cameraTarget.position;
             Camera.main.transform.rotation = cameraTarget.rotation;
         }
-        else
-        {
-            Debug.LogWarning("cameraTarget nie je nastaven˝!");
-        }
 
-        // Skry A/B/C tlaËidl· z Level1
+        // Skry A/B/C tlaËidl· z Level 1
         foreach (Transform child in questionPanel.transform)
         {
             if (child.name.StartsWith("AnswerButton"))
@@ -43,12 +40,12 @@ public class Level2Manager : MonoBehaviour
             }
         }
 
-        // Zmenöi UI panel dolu
+        // Panel ñ dlhöÌ a ötÌhlejöÌ
         RectTransform rt = questionPanel.GetComponent<RectTransform>();
         if (rt != null)
         {
-            rt.anchorMin = new Vector2(0.3f, 0.05f);
-            rt.anchorMax = new Vector2(0.7f, 0.25f);
+            rt.anchorMin = new Vector2(0.2f, 0.05f);
+            rt.anchorMax = new Vector2(0.8f, 0.15f);
             rt.offsetMin = Vector2.zero;
             rt.offsetMax = Vector2.zero;
         }
@@ -61,12 +58,12 @@ public class Level2Manager : MonoBehaviour
     {
         if (currentIndex >= interiorQuestions.Count)
         {
-            Debug.Log("InteriÈr dokonËen˝ ñ pres˙vame sa k motoru!");
+            Debug.Log("InteriÈr dokonËen˝ ñ prechod na motor.");
             questionPanel.SetActive(false);
 
-            if (engineViewTarget != null)
+            if (cameraTarget2 != null)
             {
-                StartCoroutine(MoveCameraTo(engineViewTarget));
+                StartCoroutine(MoveCameraToTarget(cameraTarget2));
             }
 
             return;
@@ -75,6 +72,25 @@ public class Level2Manager : MonoBehaviour
         var current = interiorQuestions[currentIndex];
         questionText.text = current.questionText;
         EnableClickable(current.correctObjects);
+    }
+
+    IEnumerator MoveCameraToTarget(Transform target)
+    {
+        Transform cam = Camera.main.transform;
+
+        while (Vector3.Distance(cam.position, target.position) > 0.05f ||
+               Quaternion.Angle(cam.rotation, target.rotation) > 0.5f)
+        {
+            cam.position = Vector3.Lerp(cam.position, target.position, cameraMoveSpeed * Time.deltaTime);
+            cam.rotation = Quaternion.Slerp(cam.rotation, target.rotation, cameraMoveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        cam.position = target.position;
+        cam.rotation = target.rotation;
+
+        Debug.Log("Kamera ˙speöne preletela na motor.");
+        // Tu mÙûeö pridaù: Spusti ot·zky na motor...
     }
 
     void EnableClickable(GameObject[] objs)
@@ -90,25 +106,7 @@ public class Level2Manager : MonoBehaviour
     {
         Debug.Log("Spr·vne kliknutÈ.");
         GameManager.Instance.AddPoint();
-
         currentIndex++;
         ShowNextQuestion();
-    }
-
-    IEnumerator MoveCameraTo(Transform target)
-    {
-        Transform cam = Camera.main.transform;
-
-        while (Vector3.Distance(cam.position, target.position) > 0.05f || Quaternion.Angle(cam.rotation, target.rotation) > 0.5f)
-        {
-            cam.position = Vector3.Lerp(cam.position, target.position, cameraMoveSpeed * Time.deltaTime);
-            cam.rotation = Quaternion.Slerp(cam.rotation, target.rotation, cameraMoveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        cam.position = target.position;
-        cam.rotation = target.rotation;
-
-        Debug.Log("Kamera presunut· a otoËen· k motoru.");
     }
 }
