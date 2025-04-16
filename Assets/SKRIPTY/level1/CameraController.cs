@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
     public float moveSpeed = 2f;
     public float rotateSpeed = 5f;
 
-    // Použijeme pôvodné znaèky
     private Queue<Transform> orderedSigns = new Queue<Transform>();
     private Transform currentTarget;
     private Vector3 targetPos;
@@ -25,7 +24,7 @@ public class CameraController : MonoBehaviour
 
         yield return null;
 
-        // Namiesto groupedSigns použijeme randomizedSigns
+        // Znaèky zoradené pod¾a zón
         orderedSigns.Clear();
         foreach (var sign in SignShuffler.Instance.randomizedSigns)
         {
@@ -70,6 +69,7 @@ public class CameraController : MonoBehaviour
 
         rotateCoroutine = StartCoroutine(RotateTowards(directionToSign));
 
+        // Zobraz otázku
         SignPoint sign = currentTarget.GetComponent<SignPoint>();
         if (sign != null)
         {
@@ -104,7 +104,7 @@ public class CameraController : MonoBehaviour
         float zOffset = 1.0f;
 
         Vector3 pos = currentTarget.position;
-        targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z + zOffset);
+        targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z - zOffset); // zmena smeru
 
         StartCoroutine(MoveCameraToTarget());
     }
