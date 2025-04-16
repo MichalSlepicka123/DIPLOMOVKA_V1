@@ -8,7 +8,9 @@ public class SignShuffler : MonoBehaviour
     public Transform znackyParent;
     public Transform[] spawnZones; // napr. Zone1, Zone2, Zone3, Zone4
     public float spacing = 3f;
+
     public List<Transform> randomizedSigns = new List<Transform>();
+    public List<List<Transform>> groupedSigns = new List<List<Transform>>(); // pre kameru
 
     void Awake()
     {
@@ -25,24 +27,31 @@ public class SignShuffler : MonoBehaviour
         }
 
         randomizedSigns = ShuffleList(signs);
+        groupedSigns.Clear();
 
-        int zoneIndex = 0;
+        int signIndex = 0;
 
-        for (int i = 0; i < randomizedSigns.Count; i++)
+        for (int zoneIndex = 0; zoneIndex < spawnZones.Length; zoneIndex++)
         {
-            int localIndex = i % 5; // poradie v rámci jednej zóny
+            Vector3 basePos = spawnZones[zoneIndex].position;
+            List<Transform> zoneGroup = new List<Transform>();
 
-            if (i > 0 && i % 5 == 0) zoneIndex++; // každých 5 znaèiek prejde do ïalšej zóny
+            for (int i = 0; i < 5; i++) // 5 znaèiek na zónu
+            {
+                if (signIndex >= randomizedSigns.Count)
+                {
+                    Debug.LogWarning("Nedostatok znaèiek pre všetky zóny!");
+                    break;
+                }
 
-            if (zoneIndex < spawnZones.Length)
-            {
-                Vector3 basePos = spawnZones[zoneIndex].position;
-                randomizedSigns[i].position = basePos + new Vector3(localIndex * spacing, 0, 0);
+                Transform sign = randomizedSigns[signIndex];
+                sign.position = basePos + new Vector3(i * spacing, 0, 0);
+                zoneGroup.Add(sign);
+
+                signIndex++;
             }
-            else
-            {
-                Debug.LogWarning("Nastavených menej spawn zón ako treba!");
-            }
+
+            groupedSigns.Add(zoneGroup);
         }
     }
 
@@ -59,5 +68,3 @@ public class SignShuffler : MonoBehaviour
         return newList;
     }
 }
-
-
