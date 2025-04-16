@@ -24,7 +24,6 @@ public class CameraController : MonoBehaviour
 
         yield return null;
 
-        // Znaèky zoradené pod¾a zón
         orderedSigns.Clear();
         foreach (var sign in SignShuffler.Instance.randomizedSigns)
         {
@@ -69,7 +68,6 @@ public class CameraController : MonoBehaviour
 
         rotateCoroutine = StartCoroutine(RotateTowards(directionToSign));
 
-        // Zobraz otázku
         SignPoint sign = currentTarget.GetComponent<SignPoint>();
         if (sign != null)
         {
@@ -104,7 +102,7 @@ public class CameraController : MonoBehaviour
         float zOffset = 1.0f;
 
         Vector3 pos = currentTarget.position;
-        targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z - zOffset); // zmena smeru
+        targetPos = new Vector3(pos.x, pos.y + verticalOffset, pos.z + zOffset); // kamera pred znaèkou
 
         StartCoroutine(MoveCameraToTarget());
     }
