@@ -6,11 +6,11 @@ public class SignShuffler : MonoBehaviour
     public static SignShuffler Instance;
 
     public Transform znackyParent;
-    public Transform[] spawnZones; // napr. Zone1, Zone2, Zone3, Zone4
+    public Transform[] spawnZones;
     public float spacing = 3f;
 
     public List<Transform> randomizedSigns = new List<Transform>();
-    public List<List<Transform>> groupedSigns = new List<List<Transform>>(); // pre kameru
+    public List<List<Transform>> groupedSigns = new List<List<Transform>>();  // pre CameraController
 
     void Awake()
     {
@@ -19,39 +19,45 @@ public class SignShuffler : MonoBehaviour
 
     void Start()
     {
+        // Získaj všetky znaèky
         List<Transform> signs = new List<Transform>();
-
         foreach (Transform child in znackyParent)
         {
             signs.Add(child);
         }
 
         randomizedSigns = ShuffleList(signs);
+
         groupedSigns.Clear();
 
-        int signIndex = 0;
+        int zoneIndex = 0;
 
-        for (int zoneIndex = 0; zoneIndex < spawnZones.Length; zoneIndex++)
+        for (int i = 0; i < randomizedSigns.Count; i++)
         {
-            Vector3 basePos = spawnZones[zoneIndex].position;
-            List<Transform> zoneGroup = new List<Transform>();
+            int localIndex = i % 5;
 
-            for (int i = 0; i < 5; i++) // 5 znaèiek na zónu
+            if (i > 0 && i % 5 == 0) zoneIndex++;
+
+            if (zoneIndex >= spawnZones.Length)
             {
-                if (signIndex >= randomizedSigns.Count)
-                {
-                    Debug.LogWarning("Nedostatok znaèiek pre všetky zóny!");
-                    break;
-                }
-
-                Transform sign = randomizedSigns[signIndex];
-                sign.position = basePos + new Vector3(i * spacing, 0, 0);
-                zoneGroup.Add(sign);
-
-                signIndex++;
+                Debug.LogWarning("Nedostatok zón pre všetky znaèky!");
+                break;
             }
 
-            groupedSigns.Add(zoneGroup);
+            Vector3 basePos = spawnZones[zoneIndex].position;
+            randomizedSigns[i].position = basePos + new Vector3(localIndex * spacing, 0, 0);
+        }
+
+        // Zoskup znaèky po 5 do groupedSigns
+        for (int i = 0; i < randomizedSigns.Count; i += 5)
+        {
+            int count = Mathf.Min(5, randomizedSigns.Count - i);
+            List<Transform> group = randomizedSigns.GetRange(i, count);
+
+            // Zoradíme znaèky pod¾a X pozície (z¾ava doprava)
+            group.Sort((a, b) => a.position.x.CompareTo(b.position.x));
+
+            groupedSigns.Add(group);
         }
     }
 
