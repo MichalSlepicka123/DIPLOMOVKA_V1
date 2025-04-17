@@ -5,6 +5,11 @@ using UnityEngine;
 public class SignPoint : MonoBehaviour
 {
     [TextArea] public string questionText = "Èo znamená táto znaèka?";
-    public string correctAnswer;
-    public string[] allOptions = new string[3];
+    [System.Serializable]
+    public struct SignQuestion
+    {
+        public string option;
+        public bool isCorrect;
+    }
+    public SignQuestion[] signQuestion;
 }
