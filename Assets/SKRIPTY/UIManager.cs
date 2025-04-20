@@ -110,4 +110,5 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("LEVEL1");
     }
     public void ResetButtonCount() => buttonCount = 0;
+    public void HideQuestionPanel() => questionPanel.SetActive(false);
 }

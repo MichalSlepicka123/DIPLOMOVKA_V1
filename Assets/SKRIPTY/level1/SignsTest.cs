@@ -77,6 +77,7 @@ public class SignsTest : MonoBehaviour
         {
             GameManager.Instance.AddPoint();
         }
+        UIManager.Instance.HideQuestionPanel();
         UIManager.Instance.ResetButtonCount();
         currentStep++;
         if(currentStep < allSigns.Length)
