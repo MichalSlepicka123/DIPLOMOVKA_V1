@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//This script is deprecated
 public class Level2Manager : MonoBehaviour
 {
     public List<Level2Question> interiorQuestions = new List<Level2Question>();

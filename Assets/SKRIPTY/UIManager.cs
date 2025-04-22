@@ -111,4 +111,11 @@ public class UIManager : MonoBehaviour
     }
     public void ResetButtonCount() => buttonCount = 0;
     public void HideQuestionPanel() => questionPanel.SetActive(false);
+    public void ToggleButtonVisibility(bool isVisible)
+    {
+        foreach (Button btn in _answerButtons)
+        {
+            btn.gameObject.SetActive(isVisible);
+        }
+    }
 }

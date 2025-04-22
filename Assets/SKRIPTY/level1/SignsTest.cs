@@ -86,7 +86,8 @@ public class SignsTest : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.ShowFinalScore();
+            GameDirector.Instance.onStepEnd?.Invoke();
+            //UIManager.Instance.ShowFinalScore();
         }
     }
     bool CheckAnswareValidity(Button pressedBtn)

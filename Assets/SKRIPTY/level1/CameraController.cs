@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static SignsTest;
 
 public class CameraController : MonoBehaviour
 {
@@ -21,11 +20,11 @@ public class CameraController : MonoBehaviour
         }
         transform.rotation = targetRotation;
     }
-    public void MoveToTarget(Transform target,Transform sign, Action onTargetReached = null)
+    public void MoveToTarget(Transform target,Transform lookTarget, Action onTargetReached = null , bool lookDirectlyToTarget = false)
     {
-        StartCoroutine(MoveCameraToTarget(target, sign, onTargetReached));
+        StartCoroutine(MoveCameraToTarget(target, lookTarget, onTargetReached, lookDirectlyToTarget));
     }
-    IEnumerator MoveCameraToTarget(Transform target, Transform sign, Action onTargetReached = null)
+    IEnumerator MoveCameraToTarget(Transform target, Transform lookTarget, Action onTargetReached = null, bool lookDirectlyToTarget = false)
     {
         Vector3 directionToTarget = (target.position - transform.position).normalized;
 
@@ -41,8 +40,9 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = target.position;
-
-        Vector3 directionToSign = ((sign.position + Vector3.up) - transform.position).normalized;
+        Vector3 directionToSign = new();
+        if (!lookDirectlyToTarget) directionToSign = ((lookTarget.position + Vector3.up) - transform.position).normalized;
+        else directionToSign = (lookTarget.position - transform.position).normalized;
 
 
         if (rotateCoroutine != null)
