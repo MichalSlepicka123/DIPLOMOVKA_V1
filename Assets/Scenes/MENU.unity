@@ -390,6 +390,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introPanel: {fileID: 340680501}
   okButton: {fileID: 735642580}
+  menuButtons:
+  - {fileID: 801040835}
+  - {fileID: 392255552}
+  - {fileID: 1776923465}
+  - {fileID: 1278762924}
+  - {fileID: 1134979623}
 --- !u!114 &340680504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3116,6 +3122,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5067755742887398202, guid: f0ac6fb9ada49f24683e3eca20786103, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544880246915493832, guid: f0ac6fb9ada49f24683e3eca20786103, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5557327951299580288, guid: f0ac6fb9ada49f24683e3eca20786103, type: 3}

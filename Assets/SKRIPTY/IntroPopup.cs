@@ -7,22 +7,32 @@ public class IntroPopup : MonoBehaviour
     public Button okButton;
     public Button[] menuButtons;
 
+    // Funguje len poèas bežiacej hry
+    private static bool hasSeenIntroThisSession = false;
+
     void Start()
     {
-        introPanel.SetActive(true);
+        if (!hasSeenIntroThisSession)
+        {
+            introPanel.SetActive(true);
+            foreach (Button btn in menuButtons)
+                btn.interactable = false;
 
-        // Zablokuj interakcie
-        foreach (Button btn in menuButtons)
-            btn.interactable = false;
-
-        okButton.onClick.AddListener(CloseIntro);
+            okButton.onClick.AddListener(CloseIntro);
+        }
+        else
+        {
+            introPanel.SetActive(false);
+            foreach (Button btn in menuButtons)
+                btn.interactable = true;
+        }
     }
 
     void CloseIntro()
     {
-        introPanel.SetActive(false);
+        hasSeenIntroThisSession = true;
 
-        // Aktivuj menu tlaèidlá
+        introPanel.SetActive(false);
         foreach (Button btn in menuButtons)
             btn.interactable = true;
     }
