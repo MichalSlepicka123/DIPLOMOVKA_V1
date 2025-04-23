@@ -28,7 +28,7 @@ public class CarTest : MonoBehaviour
     private void Update()
     {
         if (!_isActive) return;
-        if(Input.GetMouseButtonDown(0)) OnAnswareSelected();
+        if(Input.GetMouseButtonDown(0)) OnPartPressed();
     }
     public void StartTest()
     {
@@ -49,7 +49,7 @@ public class CarTest : MonoBehaviour
         Transform cameraPos = allQuestion[currentPartIndex].cameraLookTarget;
         return cameraPos;
     }
-    void OnAnswareSelected()
+    void OnPartPressed()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -59,24 +59,33 @@ public class CarTest : MonoBehaviour
             {
                 if (GetCurrentGameObject() == hit.collider.gameObject)
                 {
+                    if (part.anim != null) part.PlayAnim(OnAnswareSelected);
                     GameManager.Instance.AddPoint();
-                }
-                currentQuestionIndexInPart++;
-                if(currentQuestionIndexInPart > allQuestion[currentPartIndex].questions.Length)
-                {
-                    currentPartIndex++;
-                    currentQuestionIndexInPart = 0;
-                    MoveToTargePos();
                 }
                 else
                 {
-                    ShowQuestion();
+                    if (part.anim != null) GetCurrentGameObject().GetComponent<Part>().PlayAnim(OnAnswareSelected);
                 }
-                if (currentPartIndex > allQuestion.Length)
-                {
-                    GameDirector.Instance.onStepEnd?.Invoke();
-                }
+                if (part.anim == null) OnAnswareSelected();
             }
+        }
+    }
+    void OnAnswareSelected()
+    {
+        currentQuestionIndexInPart++;
+        if(currentQuestionIndexInPart >= allQuestion[currentPartIndex].questions.Length)
+        {
+            currentPartIndex++;
+            currentQuestionIndexInPart = 0;
+            MoveToTargePos();
+        }
+        else
+        {
+            ShowQuestion();
+        }
+        if (currentPartIndex > allQuestion.Length)
+        {
+            GameDirector.Instance.onStepEnd?.Invoke();
         }
     }
     void ShowQuestion()

@@ -1694,22 +1694,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -7312894616356409556, guid: 567a1abae4d36904e90b934533441c34, type: 3}
   m_PrefabInstance: {fileID: 1179915370}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &60202061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60202057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31164868f3efed44d98c839d3b0e6cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorOpenAngle: 60
-  rotateSpeed: 3
-  zoomDistance: 1.2
-  zoomSpeed: 2
 --- !u!64 &60202062
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1732,6 +1716,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9073694547847453193, guid: 567a1abae4d36904e90b934533441c34, type: 3}
+--- !u!114 &60202066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60202057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809db1fbeef437649bb187dff4180737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: Kliknite na dvere
+  correctPart: {fileID: 60202057}
+  anim: {fileID: 0}
+--- !u!111 &60202067
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60202057}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1056fd62581fba14da9d9ec30fa99a68, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 1056fd62581fba14da9d9ec30fa99a68, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &61696758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,6 +2338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 844990884}
+  anim: {fileID: 0}
 --- !u!1001 &98670674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5315,6 +5331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 262436323}
+  anim: {fileID: 0}
 --- !u!4 &272328190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7964267413938432658, guid: 75ab41a378848db47a90831be2db3784, type: 3}
@@ -6286,6 +6303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 326830898}
+  anim: {fileID: 0}
 --- !u!1001 &331414754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8953,6 +8971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 262436323}
+  anim: {fileID: 0}
 --- !u!1001 &429724548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10912,6 +10931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Zo za\u010Diatku z \u013Eahka, klikni na volant."
   correctPart: {fileID: 839719694}
+  anim: {fileID: 0}
 --- !u!1001 &528832962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12207,6 +12227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1635584193}
+  anim: {fileID: 0}
 --- !u!1001 &585355764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12800,6 +12821,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 728944586}
+  - {fileID: 750658264}
+  - {fileID: 1733987404}
   m_Father: {fileID: 861693481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &619688333
@@ -14320,6 +14343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 669693311}
+  anim: {fileID: 0}
 --- !u!1 &670747425
 GameObject:
   m_ObjectHideFlags: 0
@@ -14902,6 +14926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 715567711}
+  anim: {fileID: 0}
 --- !u!1001 &720391024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15103,6 +15128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 720890540}
+  anim: {fileID: 0}
 --- !u!1001 &727892007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15727,6 +15753,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
   m_PrefabInstance: {fileID: 1954387452}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &750658263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750658264}
+  m_Layer: 0
+  m_Name: CameraLook (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750658264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750658263}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.7102, y: 8.1757, z: -12.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 615187604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754822793
 GameObject:
   m_ObjectHideFlags: 0
@@ -17583,6 +17640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Zo za\u010Diatku z \u013Eahka, klikni na volant."
   correctPart: {fileID: 839719694}
+  anim: {fileID: 0}
 --- !u!1001 &844292162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17781,8 +17839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809db1fbeef437649bb187dff4180737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: 
+  question: dolej
   correctPart: {fileID: 844990884}
+  anim: {fileID: 0}
 --- !u!4 &848305590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3181f15579d1b0c46872c9980226268b, type: 3}
@@ -18143,9 +18202,23 @@ MonoBehaviour:
   - cameraPos: {fileID: 2075409440}
     cameraLookTarget: {fileID: 728944586}
     questions:
+    - {fileID: 60202066}
+  - cameraPos: {fileID: 2047092798}
+    cameraLookTarget: {fileID: 750658264}
+    questions:
     - {fileID: 839719702}
     - {fileID: 1767935723}
     - {fileID: 1907848722}
+  - cameraPos: {fileID: 1544487762}
+    cameraLookTarget: {fileID: 1733987404}
+    questions:
+    - {fileID: 1720369205}
+  - cameraPos: {fileID: 1039737176}
+    cameraLookTarget: {fileID: 1733987404}
+    questions:
+    - {fileID: 844990889}
+    - {fileID: 262436328}
+    - {fileID: 1721285702}
 --- !u!1 &865116979
 GameObject:
   m_ObjectHideFlags: 0
@@ -18856,6 +18929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: Klikni na smerovku.
   correctPart: {fileID: 326830898}
+  anim: {fileID: 0}
 --- !u!1001 &897078554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20067,7 +20141,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -21047,6 +21121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 720890540}
+  anim: {fileID: 0}
 --- !u!1001 &1009908466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21525,6 +21600,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 87cc36a45a321ad478c47c9fec13dbd3, type: 3}
   m_PrefabInstance: {fileID: 1034332336}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1039737175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039737176}
+  m_Layer: 0
+  m_Name: Target (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039737176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039737175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.794, y: 8.3084, z: -11.792}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1598084317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1044739533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23107,6 +23213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Kliknu na ped\xE1l brzdy."
   correctPart: {fileID: 1907848717}
+  anim: {fileID: 0}
 --- !u!1001 &1139837650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24164,7 +24271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7312894616356409556, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6364948667936875869, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalScale.x
@@ -24208,19 +24315,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.91604805
+      value: 0.9999987
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.40106866
+      value: 0.001629237
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -47.29
+      value: -50.438
       objectReference: {fileID: 0}
     - target: {fileID: 3044013587139854313, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -24271,13 +24382,19 @@ PrefabInstance:
       addedObject: {fileID: 60202062}
     - targetCorrespondingSourceObject: {fileID: -7312894616356409556, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 60202061}
+      addedObject: {fileID: 60202066}
+    - targetCorrespondingSourceObject: {fileID: -7312894616356409556, guid: 567a1abae4d36904e90b934533441c34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 60202067}
     - targetCorrespondingSourceObject: {fileID: 1788845593105122680, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1720369200}
     - targetCorrespondingSourceObject: {fileID: 1788845593105122680, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1720369199}
+      addedObject: {fileID: 1720369205}
+    - targetCorrespondingSourceObject: {fileID: 1788845593105122680, guid: 567a1abae4d36904e90b934533441c34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1720369204}
     - targetCorrespondingSourceObject: {fileID: -8325689553952117475, guid: 567a1abae4d36904e90b934533441c34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 839719698}
@@ -26122,6 +26239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 669693311}
+  anim: {fileID: 0}
 --- !u!1001 &1259667326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27412,6 +27530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Klikni na radiacu p\xE1ku."
   correctPart: {fileID: 1443421194}
+  anim: {fileID: 0}
 --- !u!1 &1302422041
 GameObject:
   m_ObjectHideFlags: 0
@@ -27982,6 +28101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1939206272}
+  anim: {fileID: 0}
 --- !u!1001 &1323062210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30903,6 +31023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1443421194}
+  anim: {fileID: 0}
 --- !u!4 &1455702385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1621869133711129490, guid: f7ead5514cf657c44864730eee5a4463, type: 3}
@@ -32953,6 +33074,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 87cc36a45a321ad478c47c9fec13dbd3, type: 3}
   m_PrefabInstance: {fileID: 1542675639}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544487761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544487762}
+  m_Layer: 0
+  m_Name: Target (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1544487762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544487761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.689, y: 8.3186, z: -11.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1598084317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1545387400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33537,6 +33689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Klikni na plynov\xFD ped\xE1l."
   correctPart: {fileID: 1767935718}
+  anim: {fileID: 0}
 --- !u!1001 &1597872585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33645,6 +33798,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2075409440}
+  - {fileID: 2047092798}
+  - {fileID: 1039737176}
+  - {fileID: 1544487762}
   m_Father: {fileID: 861693481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1601283448
@@ -34321,6 +34477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1635584193}
+  anim: {fileID: 0}
 --- !u!1 &1657217142
 GameObject:
   m_ObjectHideFlags: 0
@@ -35781,22 +35938,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1788845593105122680, guid: 567a1abae4d36904e90b934533441c34, type: 3}
   m_PrefabInstance: {fileID: 1179915370}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1720369199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1720369195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ea28e5b99b654b4eba9f20aad982c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openAngleX: -40
-  rotateSpeed: 3
-  zoomDistance: 1
-  zoomSpeed: 2
 --- !u!64 &1720369200
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35819,6 +35960,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3137129725661375301, guid: 567a1abae4d36904e90b934533441c34, type: 3}
+--- !u!111 &1720369204
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720369195}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: dc768cebd7ab085448dab152c191cb8f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: dc768cebd7ab085448dab152c191cb8f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1720369205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720369195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809db1fbeef437649bb187dff4180737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: Kliknite na kaputu
+  correctPart: {fileID: 1720369195}
+  anim: {fileID: 0}
 --- !u!1 &1721285697
 GameObject:
   m_ObjectHideFlags: 0
@@ -35942,6 +36114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1721285697}
+  anim: {fileID: 0}
 --- !u!1 &1723902719
 GameObject:
   m_ObjectHideFlags: 0
@@ -36182,6 +36355,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727518463}
   m_CullTransparentMesh: 1
+--- !u!1 &1733987403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733987404}
+  m_Layer: 0
+  m_Name: CameraLook (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733987404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733987403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.7837, y: 8.1898, z: -11.9188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 615187604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1740338877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1435085482231551218, guid: 1d683c725e095064293c761edf0ed330, type: 3}
@@ -37030,6 +37234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Klikni na plynov\xFD ped\xE1l."
   correctPart: {fileID: 1767935718}
+  anim: {fileID: 0}
 --- !u!1001 &1768358564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38498,6 +38703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1721285697}
+  anim: {fileID: 0}
 --- !u!1001 &1843958061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39854,6 +40060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Kliknu na ped\xE1l brzdy."
   correctPart: {fileID: 1907848717}
+  anim: {fileID: 0}
 --- !u!1 &1916006530
 GameObject:
   m_ObjectHideFlags: 0
@@ -40619,6 +40826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 
   correctPart: {fileID: 1939206272}
+  anim: {fileID: 0}
 --- !u!1 &1939824648
 GameObject:
   m_ObjectHideFlags: 0
@@ -42846,6 +43054,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044476436}
   m_Mesh: {fileID: 4300000, guid: 5b37bebced2befa4cb0fa7e92016e465, type: 3}
+--- !u!1 &2047092797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047092798}
+  m_Layer: 0
+  m_Name: Target (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2047092798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047092797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.5412, y: 8.2098, z: -12.311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1598084317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055591466
 GameObject:
   m_ObjectHideFlags: 0
@@ -42892,6 +43131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "Klikni na spojkov\xFD ped\xE1l."
   correctPart: {fileID: 715567711}
+  anim: {fileID: 0}
 --- !u!1 &2061332757
 GameObject:
   m_ObjectHideFlags: 0
