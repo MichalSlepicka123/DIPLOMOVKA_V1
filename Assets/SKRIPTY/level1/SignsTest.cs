@@ -12,13 +12,11 @@ public class SignsTest : MonoBehaviour
     public struct Sign
     {
         public Transform point; // Jeden objekt pre spawn aj kameru
-        // public Transform spawnPoint; // NepouûÌva sa
-        // public Transform cameraPos;  // NepouûÌva sa
         public GameObject[] signs;
+        public Vector3 cameraOffset; // Individu·lny offset pre kameru
     }
 
     public Sign[] allSigns;
-    public Vector3 cameraOffset = new Vector3(0f, 2f, -4f); // Ofset pre kameru
     public float lookAtYOffset = 1.5f; // V˝öka, na ktor˙ sa m· kamera pozeraù nad znaËku
 
     int currentStep = 0;
@@ -51,18 +49,31 @@ public class SignsTest : MonoBehaviour
     {
         foreach (Button btn in UIManager.Instance.answerButtons)
         {
-            // Toto nefunguje spr·vne, ak sa pouûije lambda ñ ponechanÈ pre kontext
-            // btn.onClick.RemoveListener(() => OnAnswareSelected(btn));
+            // btn.onClick.RemoveListener(() => OnAnswareSelected(btn)); // lambda ned· odobraù spr·vne
         }
     }
 
     void InitSigns()
     {
+        GameObject previousPrefab = null;
+
         foreach (Sign sign in allSigns)
         {
-            int randNumber = Random.Range(0, sign.signs.Length);
-            GameObject obj = Instantiate(sign.signs[randNumber], sign.point.position, sign.point.rotation, parent);
+            GameObject selectedPrefab = null;
+            int tries = 0;
+
+            do
+            {
+                int randNumber = Random.Range(0, sign.signs.Length);
+                selectedPrefab = sign.signs[randNumber];
+                tries++;
+            }
+            while (selectedPrefab == previousPrefab && tries < 10);
+
+            GameObject obj = Instantiate(selectedPrefab, sign.point.position, sign.point.rotation, parent);
             Debug.Log("Instantiated GO: " + obj.name);
+
+            previousPrefab = selectedPrefab;
             spawnedSignList.Add(obj.GetComponent<SignPoint>());
         }
     }
@@ -71,20 +82,12 @@ public class SignsTest : MonoBehaviour
     {
         Transform target = GetCurrentSignTransform();
 
-        Vector3 camTargetPos = target.position + cameraOffset;
+        Vector3 camTargetPos = allSigns[currentStep].point.position + allSigns[currentStep].cameraOffset;
         Vector3 lookAtPoint = target.position + new Vector3(0f, lookAtYOffset, 0f);
         Quaternion camTargetRot = Quaternion.LookRotation(lookAtPoint - camTargetPos);
 
         cam.MoveToTarget(camTargetPos, camTargetRot, ShowQuestion);
     }
-
-    /*
-    Transform GetCurrentCameraTarget() 
-    {
-        Transform cameraPos = allSigns[currentStep].cameraPos;
-        return cameraPos;
-    }
-    */
 
     Transform GetCurrentSignTransform()
     {
