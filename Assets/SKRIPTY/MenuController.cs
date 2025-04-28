@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public GameObject infoPanel;
+    public GameObject introPanel;
 
     public Button level1Button;
     public Button level2Button;
     public Button level3Button;
+
+    public Button startButton; //  Pridané
+    public Button infoButton;  //  Pridané
 
     void Start()
     {
@@ -58,6 +62,18 @@ public class MenuController : MonoBehaviour
     public void HideInfo()
     {
         infoPanel.SetActive(false);
+    }
+
+    public void HideIntro()
+    {
+        Debug.Log("Klik na OK – skrývam introPanel");
+        introPanel.SetActive(false);
+
+        startButton.gameObject.SetActive(true);
+        startButton.interactable = true;
+
+        infoButton.gameObject.SetActive(true);
+        infoButton.interactable = true;
     }
 
     public void StartGame()
